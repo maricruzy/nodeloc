@@ -7,7 +7,7 @@
 // @match        https://meta.discourse.org/*
 // @match        https://meta.appinn.net/*
 // @match        https://community.openai.com/*
-// @match        https://nodeloc.cc/*
+// @match        https://www.nodeloc.com/*
 // @match        https://bbs.tampermonkey.net.cn/*
 // @match        https://greasyfork.org/*
 // @grant        GM_setValue
@@ -37,7 +37,7 @@
           "https://meta.discourse.org",
           "https://meta.appinn.net",
           "https://community.openai.com",
-          "https://nodeloc.cc",
+          "https://www.nodeloc.com",
           "https://bbs.tampermonkey.net.cn",
           "https://greasyfork.org"
         ],
@@ -308,7 +308,7 @@
     static detectForumType(url) {
       if (url.includes('discourse')) return 'discourse';
       if (url.includes('linux.do')) return 'discourse';
-      if (url.includes('nodeloc.cc')) return 'discourse';
+      if (url.includes('www.nodeloc.com')) return 'discourse';
       if (url.includes('greasyfork.org')) return 'greasyfork';
       return 'unknown';
     }
@@ -1603,14 +1603,14 @@
 
     // 更新能量显示
     updateEnergyDisplay() {
-      if (window.location.hostname !== 'nodeloc.cc') {
+      if (window.location.hostname !== 'www.nodeloc.com') {
         this.energyValue = 'N/A';
         return;
       }
 
       GM_xmlhttpRequest({
         method: 'GET',
-        url: 'https://nodeloc.cc/leaderboard/1.json',
+        url: 'https://www.nodeloc.com/leaderboard/1.json',
         onload: (response) => {
           try {
             const data = JSON.parse(response.responseText);
@@ -1980,7 +1980,7 @@
       // 测试基本的用户信息API
       GM_xmlhttpRequest({
         method: 'GET',
-        url: `https://nodeloc.cc/u/${username}.json`,
+        url: `https://www.nodeloc.com/u/${username}.json`,
         headers: {
           'Accept': 'application/json',
           'X-Requested-With': 'XMLHttpRequest',
@@ -2018,7 +2018,7 @@
     testUpgradeProgressApi(username) {
       GM_xmlhttpRequest({
         method: 'GET',
-        url: `https://nodeloc.cc/u/${username}/upgrade-progress.json`,
+        url: `https://www.nodeloc.com/u/${username}/upgrade-progress.json`,
         headers: {
           'Accept': 'application/json, text/javascript, */*; q=0.01',
           'X-Requested-With': 'XMLHttpRequest',
@@ -2125,7 +2125,7 @@
     }
 
     updateUpgradeProgress() {
-      if (window.location.hostname !== 'nodeloc.cc') {
+      if (window.location.hostname !== 'www.nodeloc.com') {
         this.upgradeProgress = 'N/A (非NodeLoc站点)';
         this.updateContent();
         return;
@@ -2145,7 +2145,7 @@
 
       GM_xmlhttpRequest({
         method: 'GET',
-        url: `https://nodeloc.cc/u/${username}/upgrade-progress.json`,
+        url: `https://www.nodeloc.com/u/${username}/upgrade-progress.json`,
         headers: {
           'Accept': 'application/json, text/javascript, */*; q=0.01',
           'X-Requested-With': 'XMLHttpRequest',
@@ -3854,7 +3854,7 @@
         'meta.discourse.org': 'discourse-meta',
         'meta.appinn.net': 'appinn',
         'community.openai.com': 'openai',
-        'nodeloc.cc': 'nodeloc',
+        'www.nodeloc.com': 'nodeloc',
         'bbs.tampermonkey.net.cn': 'tampermonkey',
         'greasyfork.org': 'greasyfork'
       };
@@ -5895,7 +5895,7 @@
       }
 
       // 检查是否在支持的页面
-      const supportedDomains = ['linux.do', 'meta.discourse.org', 'meta.appinn.net', 'community.openai.com', 'nodeloc.cc', 'bbs.tampermonkey.net.cn', 'greasyfork.org'];
+      const supportedDomains = ['linux.do', 'meta.discourse.org', 'meta.appinn.net', 'community.openai.com', 'www.nodeloc.com', 'bbs.tampermonkey.net.cn', 'greasyfork.org'];
       const currentDomain = window.location.hostname;
       const isSupported = supportedDomains.some(domain => currentDomain.includes(domain));
 
